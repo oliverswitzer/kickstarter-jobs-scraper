@@ -1,5 +1,5 @@
 require_relative './application_record'
 
-class JobPosting < ApplicationRecord
+class JobListing < ApplicationRecord
 
 end

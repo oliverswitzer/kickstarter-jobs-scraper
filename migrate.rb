@@ -6,9 +6,8 @@ ActiveRecord::Base.establish_connection(db_config)
 
 class CreateJobPostingsTable < ActiveRecord::Migration[5.2]
   def change
-    create_table :job_postings do |t|
-      t.string :name
-      t.integer :description
+    create_table :job_listings do |t|
+      t.string :title
       t.string :location
       t.timestamps
     end

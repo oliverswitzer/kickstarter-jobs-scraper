@@ -123,6 +123,7 @@ DEPENDENCIES
   activerecord
   kimurai
   postgresql
+  pry
   rake
   sqlite3
 
