@@ -3,7 +3,7 @@ require 'bundler/setup'
 
 Bundler.require(:default)
 
-require_relative 'models/job_listing'
+require_relative 'persistence/models/job_listing'
 
 class KickstarterJobsScraper < Kimurai::Base
   @name = 'KickstarterJobsScraper'
