@@ -16,3 +16,7 @@ Then run the app
   * `gem install pry-rescue`
   * `gem install pry-byebug`
 * Open the console `pry -I . -r app.rb`
+
+### Deploying
+
+* `git push heroku master`
