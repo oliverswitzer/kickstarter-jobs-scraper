@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'kimurai'
 gem 'activerecord'
+gem 'kimurai'
+gem 'postgresql'
+gem 'rake'
 gem 'sqlite3'
-gem "postgresql"
