@@ -6,8 +6,11 @@ class CreateJobPostingsTable < ActiveRecord::Migration[5.2]
     create_table :job_listings do |t|
       t.string :title
       t.string :location
-      t.timestamps
+      t.timestamp :scraped_at
     end
+
+    add_index :job_listings, :scraped_at
+    add_index :job_listings, [:scraped_at, :title]
   end
 end
 

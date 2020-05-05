@@ -18,7 +18,7 @@ class KickstarterJobsScraper < Kimurai::Base
       title = job_listing.css('.job-block__title').inner_text.strip
       location = job_listing.css('.job-block__location').inner_text.strip
 
-      JobListing.create(title: title, location: location)
+      JobListing.create(title: title, location: location, scraped_at: Time.now)
     end
   end
 end
