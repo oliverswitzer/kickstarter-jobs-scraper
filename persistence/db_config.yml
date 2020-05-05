@@ -2,4 +2,4 @@ adapter: postgresql
 encoding: unicode
 timeout: 5000
 database: ksr-jobs-scraper-development
-host: <%= ENV['DATABASE_URL'] || "localhost" %>
+url: <%= ENV['DATABASE_URL'] %>
