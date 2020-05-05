@@ -1,0 +1,4 @@
+adapter: postgresql
+encoding: unicode
+timeout: 5000
+database: ksr-jobs-scraper-development

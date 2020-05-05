@@ -2,6 +2,8 @@ require 'rubygems'
 require 'bundler/setup'
 Bundler.require(:default)
 
+require_relative 'models/job_posting'
+
 class KickstarterJobsScraper < Kimurai::Base
   @name = "KickstarterJobsScraper"
   @engine = :mechanize
@@ -11,12 +13,8 @@ class KickstarterJobsScraper < Kimurai::Base
   }
 
   def parse(response, url:, data: {})
-    jobs = response.xpath("//div[@class='job-block']").map do |job_div|
-      job_div.inner_text
+    response.xpath("//div[@class='job-block']").each do |job_div|
+      JobPosting.create(name: job_div.inner_text)
     end
-
-    puts jobs
   end
 end
-
-KickstarterJobsScraper.crawl!

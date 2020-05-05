@@ -1,6 +1,11 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    activemodel (6.0.2.2)
+      activesupport (= 6.0.2.2)
+    activerecord (6.0.2.2)
+      activemodel (= 6.0.2.2)
+      activesupport (= 6.0.2.2)
     activesupport (6.0.2.2)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
@@ -71,11 +76,14 @@ GEM
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     ntlm-http (0.1.1)
+    pg (1.2.3)
     pmap (1.1.1)
     poltergeist (1.18.1)
       capybara (>= 2.1, < 4)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
+    postgresql (1.0.0)
+      pg
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -89,6 +97,7 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    sqlite3 (1.4.2)
     thor (1.0.1)
     thread_safe (0.3.6)
     tzinfo (1.2.7)
@@ -110,8 +119,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord
   kimurai
-  pry
+  postgresql
+  sqlite3
 
 BUNDLED WITH
    2.0.2
