@@ -1,7 +1,9 @@
 require 'rubygems'
 require 'bundler/setup'
+require 'dotenv'
 
 Bundler.require(:default)
+Dotenv.load!
 
 require_relative 'persistence/models/job_listing'
 
@@ -24,8 +26,29 @@ class KickstarterJobsScraper < Kimurai::Base
     end
 
     changeset = JobListing.changes_since_last_scrape
+    puts changeset.to_s
 
-    puts "added: #{changeset[:added]}"
-    puts "removed: #{changeset[:removed]}"
+    if changeset.has_changes?
+      message = ""
+
+      message << ":rolled_up_newspaper: Heads up, it looks like changes have been made to the Kickstarter jobs page\n"
+      if changeset.added.present?
+        message << "*New job listings:*\n"
+        message << changeset.added.map(&:to_s).map { |listing| ":heavy_plus_sign: #{listing}"}.join("\n")
+      end
+      if changeset.removed.present?
+        message << "*Removed job listings:*\n"
+
+        message << changeset.removed.map(&:to_s).map { |listing| ":heavy_minus_sign: #{listing}"}.join("\n") if changeset.removed.present?
+      end
+
+      message << "\nAre any of these titles relevant to you? If so, you should reach out the the Kickstarter Union bargaining unit about utilizing your recall rights"
+
+      slack_client.chat_postMessage(channel: '#balloon-bot-qa', text: message)
+    end
+  end
+
+  def slack_client
+    @slack_client ||= Slack::Web::Client.new(token: ENV['SLACK_API_TOKEN'])
   end
 end

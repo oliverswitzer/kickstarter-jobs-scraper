@@ -2,7 +2,11 @@ require_relative './application_record'
 require_relative '../../lib/differ'
 
 class JobListing < ApplicationRecord
-  JobListingData = Struct.new(:title, :location)
+  JobListingData = Struct.new(:title, :location) do
+    def to_s
+      "#{title}, #{location}"
+    end
+  end
 
   scope :yesterdays_listings, -> do
     where('scraped_at > ?', (KickstarterJobsScraper::SCRAPE_INTERVAL + 1.hour).ago)
