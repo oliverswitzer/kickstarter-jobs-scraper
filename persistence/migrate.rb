@@ -14,4 +14,11 @@ class CreateJobPostingsTable < ActiveRecord::Migration[5.2]
   end
 end
 
-CreateJobPostingsTable.migrate(:up)
+def migrate
+  CreateJobPostingsTable.check_pending!
+rescue
+  puts "Migrations are pending, running migrations"
+  CreateJobPostingsTable.migrate(:up)
+end
+
+migrate
