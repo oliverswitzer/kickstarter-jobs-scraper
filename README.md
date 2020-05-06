@@ -1,3 +1,12 @@
+# Tl;dr
+
+This project is a scraper that will post to Slack whenever new jobs are posted or removed from the [Kickstarter jobs page](https://www.kickstarter.com/jobs). We run the scraper on a daily basis in Heroku.
+
+# New to the codebase?
+
+The main flow is delineated in `core/uses_cases/scrape_and_post_changes.rb`. This will be the most informative file to look 
+at to grep what this app is doing.
+
 # Development setup
 
 * Install postgres: `brew install postgresql`
