@@ -1,5 +1,9 @@
+require 'action_view'
+
 module Clients
   class Slack
+    include ActionView::Helpers::DateHelper
+
     def initialize(gem_client: ::Slack::Web::Client.new(token: ENV['SLACK_API_TOKEN']))
       @gem_client = gem_client
     end
@@ -14,7 +18,7 @@ module Clients
     def formatted_message(changeset)
       message = ""
 
-      message << ":rolled_up_newspaper: Heads up, it looks like changes have been made to the Kickstarter jobs page\n"
+      message << ":rolled_up_newspaper: Heads up, it looks like changes have been made to the Kickstarter jobs page since we last checked #{formatted_last_scraped_at} ago\n"
       if changeset.added.present?
         message << "*New job listings:*\n"
         message << changeset.added.map(&:to_s).map { |listing| ":heavy_plus_sign: #{listing}" }.join("\n")
@@ -31,6 +35,10 @@ module Clients
     end
 
     private
+
+    def formatted_last_scraped_at
+      distance_of_time_in_words(Core::UseCases::ScrapeAndPostChanges::SCRAPE_INTERVAL.ago, Time.now)
+    end
 
     attr_reader :gem_client
   end
