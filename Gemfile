@@ -7,8 +7,6 @@ gem 'postgresql'
 gem 'rake'
 gem 'slack-ruby-client'
 gem 'async-websocket'
-gem 'dotenv'
 
-group :development do
-  gem 'pry'
-end
+gem 'dotenv'
+gem 'pry'
