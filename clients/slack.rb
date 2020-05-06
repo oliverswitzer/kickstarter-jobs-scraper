@@ -18,13 +18,13 @@ module Clients
     def formatted_message(changeset)
       message = ""
 
-      message << ":rolled_up_newspaper: Heads up, it looks like changes have been made to the Kickstarter jobs page since we last checked #{formatted_last_scraped_at} ago\n"
+      message << ":rolled_up_newspaper: Heads up, it looks like changes have been made to the Kickstarter jobs page since we last checked #{formatted_last_scraped_at} ago"
       if changeset.added.present?
-        message << "*New job listings:*\n"
+        message << "\n*New job listings:*\n"
         message << changeset.added.map(&:to_s).map { |listing| ":heavy_plus_sign: #{listing}" }.join("\n")
       end
       if changeset.removed.present?
-        message << "*Removed job listings:*\n"
+        message << "\n*Removed job listings:*\n"
 
         message << changeset.removed.map(&:to_s).map { |listing| ":heavy_minus_sign: #{listing}" }.join("\n") if changeset.removed.present?
       end
