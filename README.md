@@ -21,3 +21,13 @@ Then run the app
 ### Deploying
 
 * `git push heroku master`
+
+### Running migrations
+
+For right now, it is necessary to run migrations manually when you deploy to heroku. 
+
+To do this:
+
+1. Ensure you've added your migration to `persistence/migrate.rb`
+1. Push to heroku `git push heroku master`
+1. Run `heroku run "bundle exec ruby persistence/migrate.rb""`
