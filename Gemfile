@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'nokogiri'
 gem 'activerecord'
-gem 'kimurai'
 gem 'postgresql'
 gem 'rake'
 gem 'slack-ruby-client'

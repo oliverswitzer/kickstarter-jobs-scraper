@@ -9,12 +9,12 @@ class JobListing < ApplicationRecord
   end
 
   scope :yesterdays_listings, -> do
-    where('scraped_at > ?', (KickstarterJobsScraper::SCRAPE_INTERVAL + 1.hour).ago)
-      .where('scraped_at < ?', (KickstarterJobsScraper::SCRAPE_INTERVAL - 1.hour).ago)
+    where('scraped_at > ?', (Core::UseCases::ScrapeAndPostChanges::SCRAPE_INTERVAL + 1.hour).ago)
+      .where('scraped_at < ?', (Core::UseCases::ScrapeAndPostChanges::SCRAPE_INTERVAL - 1.hour).ago)
   end
 
   scope :todays_listings, -> do
-    where('scraped_at > ?', (KickstarterJobsScraper::SCRAPE_INTERVAL - 1.hour).ago)
+    where('scraped_at > ?', (Core::UseCases::ScrapeAndPostChanges::SCRAPE_INTERVAL - 1.hour).ago)
   end
 
   def to_diffable
