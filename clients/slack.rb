@@ -29,7 +29,7 @@ module Clients
         message << changeset.removed.map(&:to_s).map { |listing| ":heavy_minus_sign: #{listing}" }.join("\n") if changeset.removed.present?
       end
 
-      message << "\nAre any of these titles relevant to you? If so, you should reach out the the Kickstarter Union bargaining unit about utilizing your recall rights"
+      message << "\nAre any of these titles relevant to you? If so, you should reach out the Kickstarter Union bargaining unit about utilizing your recall rights"
 
       message
     end
