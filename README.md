@@ -4,6 +4,7 @@
 * Create the database: `createdb ksr-jobs-scraper-development`
 * Install dependencies: `bundle install`
 * Run migrations: `bundle exec ruby migrate.rb`
+* Define a `.env` file using `.env.sample` as an example
 
 Then run the app
 
