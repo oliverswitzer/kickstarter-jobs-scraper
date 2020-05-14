@@ -1,6 +1,8 @@
 # Tl;dr
 
-This project is a scraper that will post to Slack whenever new jobs are posted or removed from the [Kickstarter jobs page](https://www.kickstarter.com/jobs). We run the scraper on a daily basis in Heroku.
+This project is a scraper that will post to Slack whenever new jobs are posted or removed from the [Kickstarter jobs page](https://www.kickstarter.com/jobs). We run the scraper on a daily basis in Heroku. 
+
+The idea is to give employees who were laid off from Kickstarter in May 2020 who have [recall rights](https://en.wikipedia.org/wiki/Right_of_recall) a way to stay informed on what job positions have been posted.
 
 # New to the codebase?
 
