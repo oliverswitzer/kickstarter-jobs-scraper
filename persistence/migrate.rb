@@ -6,12 +6,21 @@ class CreateJobPostingsTable < ActiveRecord::Migration[5.2]
     create_table :job_listings do |t|
       t.string :title
       t.string :location
-      t.timestamp :scraped_at
-    end
+      t.belongs_to :scrape_session
 
-    add_index :job_listings, :scraped_at
-    add_index :job_listings, [:scraped_at, :title]
+      t.index :title
+    end
   end
 end
 
-CreateJobPostingsTable.migrate(:up)
+class CreateScrapeSession < ActiveRecord::Migration[5.2]
+  def change
+    create_table :scrape_sessions do |t|
+      t.timestamp :scraped_at
+
+      t.index :scraped_at
+    end
+  end
+end
+
+#CreateScrapeSession.migrate(:up)

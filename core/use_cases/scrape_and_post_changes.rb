@@ -1,6 +1,7 @@
 require_relative '../../clients/jobs_page_scraper'
 require_relative '../../clients/slack'
 require_relative '../../persistence/models/job_listing'
+require_relative '../../persistence/models/scrape_session'
 
 module Core
   module UseCases
@@ -18,13 +19,16 @@ module Core
       def execute
         data = job_page_scraper.scrape
 
+        scrape_session = ScrapeSession.new(scraped_at: Time.now)
         data.each do |title, location|
-          JobListing.create(title: title, location: location, scraped_at: Time.now)
+          scrape_session.job_listings << JobListing.new(title: title, location: location)
         end
 
-        changeset = JobListing.changes_since_last_scrape
+        changeset = ScrapeSession.changes_since_last_scrape(scrape_session)
 
         slack_client.notify_of_changes(changeset) if changeset.has_changes?
+
+        scrape_session.save
       end
 
       private
